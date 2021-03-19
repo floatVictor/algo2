@@ -7,9 +7,26 @@ MainWindow* w=nullptr;
 
 void insertionSort(Array& toSort){
 	Array& sorted=w->newArray(toSort.size());
-
-	// insertion sort from toSort to sorted
-	
+    bool end;
+    int cpt = 0;
+    for(int i = 0; i < toSort.size(); i++){
+        end = true;
+        for (int j = 0; j< cpt; j++){
+            if (toSort[i] < sorted[j]){
+                for(int k = cpt; k > j; k--){
+                    sorted[k] = sorted[k-1];
+                }
+                sorted[j] = toSort[i];
+                end = false;
+                cpt++;
+                break;
+            }
+        }
+        if(end){
+            sorted[cpt] = toSort[i];
+            cpt++;
+        }
+    }
 	toSort=sorted; // update the original array
 }
 
